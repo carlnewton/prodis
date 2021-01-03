@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Step{% endblock %}
+
+{% block body %}
+    <h1>Edit Step</h1>
+    <div class="container text-left">
+        <div class="row">
+            <div class="col">
+                {{ include('step/_form.html.twig', {'button_label': 'Update'}) }}
+                {{ include('step/_delete_form.html.twig') }}
+            </div>
+            <div class="col">
+                <label for="children" class="required">Children</label>
+                <div class="list-group mb-3" name="children">
+                    {% for child in step.children %}
+                        <a class="list-group-item list-group-item-action" href="{{ path('step_edit', { flow: child.flow.id, step: child.id }) }}">{{ child.title }}</a>
+                    {% endfor %}
+                    {% for link in step.links %}
+                        <a class="list-group-item list-group-item-action" href="{{ path('link_edit', { flow: step.flow.id, step: step.id, id: link.id }) }}">
+                            {% if link.title %}
+                                {{ link.title }} <span class="text-muted">({{ link.step.title }})</span>
+                            {% else %}
+                                {{ link.step.title }}
+                            {%  endif %}
+                            <div class="float-right">
+                                
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-link-45deg" viewBox="0 0 16 16">
+  <path d="M4.715 6.542L3.343 7.914a3 3 0 1 0 4.243 4.243l1.828-1.829A3 3 0 0 0 8.586 5.5L8 6.086a1.001 1.001 0 0 0-.154.199 2 2 0 0 1 .861 3.337L6.88 11.45a2 2 0 1 1-2.83-2.83l.793-.792a4.018 4.018 0 0 1-.128-1.287z"/>
+  <path d="M6.586 4.672A3 3 0 0 0 7.414 9.5l.775-.776a2 2 0 0 1-.896-3.346L9.12 3.55a2 2 0 0 1 2.83 2.83l-.793.792c.112.42.155.855.128 1.287l1.372-1.372a3 3 0 0 0-4.243-4.243L6.586 4.672z"/>
+</svg>
+                            </div>
+                        </a>
+                    {% endfor %}
+                </div>
+                <a href="{{ path('step_new', { flowId: step.flow.id, parentId: step.id }) }}" class="btn btn-outline-dark">Create new step</a>
+                <a href="{{ path('link_new', { flow: step.flow.id, step: step.id }) }}" class="btn btn-outline-dark">Link an existing step</a>
+            </div>
+        </div>  
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{  include('editor.html.twig') }}
+{% endblock %}

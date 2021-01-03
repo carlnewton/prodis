@@ -1,0 +1,27 @@
+<script src="//cdn.ckeditor.com/4.15.1/standard/ckeditor.js"></script>
+<script>
+        for (let textarea of ['step_content', 'edit_step_content']) {
+            if (document.getElementById(textarea)) {
+                CKEDITOR.replace(
+                    textarea,
+                    {
+                        removePlugins: 'resize,elementspath',
+                        uiColor: '#ffffff',
+                        toolbar: [
+                            ['Bold','Italic','Blockquote','Link','NumberedList','BulletedList','RemoveFormat','Styles'],
+                        ],
+                        stylesSet: [
+                            { 
+                                name: 'Inline code', 
+                                element: 'code' 
+                            },
+                            { 
+                                name: 'Code block', 
+                                element: 'pre'
+                            }
+                        ]
+                    } 
+                );
+            }
+        }
+</script>

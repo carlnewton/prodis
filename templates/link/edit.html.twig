@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Link{% endblock %}
+
+{% block body %}
+    <h1>Edit Link</h1>
+
+    {{ include('link/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('link/_delete_form.html.twig') }}
+    <a class="btn btn-outline-dark float-right" href="{{ path('step_edit', { flow: link.flow.id, step: link.parentStep.id }) }}">Cancel</a>
+
+    
+{% endblock %}

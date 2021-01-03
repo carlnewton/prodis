@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}New Step{% endblock %}
+
+{% block body %}
+    <h1>Create new Step</h1>
+
+    {{ include('step/_form.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{  include('editor.html.twig') }}
+{% endblock %}

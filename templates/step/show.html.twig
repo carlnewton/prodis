@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Step{% endblock %}
+
+{% block body %}
+    <h1 class="mb-5">{{ step.title }}</h1>
+    <div id="content" class="step-content">
+        {{ step.content|raw }}
+    </div>
+
+    <div class="btn-group mt-4" role="group" aria-label="options">
+        {% for child in step.children %}
+            <a href="{{ path('step_show', { flow: child.flow.id, step: child.id }) }}" class="btn btn-outline-dark">{{ child.title }}</a>
+        {% endfor %}
+        {% for link in step.links %}
+            <a href="{{ path('step_show', { flow: link.flow.id, step: link.step.id }) }}" class="btn btn-outline-dark">{% if link.title %}{{ link.title }}{% else %}{{ link.step.title }}{% endif %}</a>
+        {%  endfor %}
+    </div>
+{% endblock %}

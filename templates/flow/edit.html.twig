@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Flow{% endblock %}
+
+{% block body %}
+    <h1>Edit Flow</h1>
+
+    {{ include('flow/_form.html.twig', {'button_label': 'Update'}) }}
+    {{ include('flow/_delete_form.html.twig') }}
+    <a class="btn btn-outline-dark float-right" href="{{ path('flow_index') }}">Cancel</a>
+
+    
+{% endblock %}
